@@ -50,7 +50,7 @@ I came up with this pattern while learning so-called "event-driven architecture"
 
 I refactored the entire project architecture so that it can be bearable for future development. It became more unit-testable, and it actually got more tests. The domain rules became more clear to everyone on the team. 
 
-# Caveats
+## Caveats
 
 - If this kind of architecture is in need, it might be better to build on top of Redux in the first place. 
 - This pattern requires developers to understand the bits of OOP practices, which you can't expect from most React devs. You need to "pitch" to your team if you were to use this pattern in your project. 
