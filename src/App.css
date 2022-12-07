@@ -1,38 +1,77 @@
+
+body {
+  background-color: gainsboro;
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.plant-app {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-flow: column nowrap;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+.material-symbols-outlined {
+  font-size: 4rem;
+  margin: 1rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#sunny {
+  color: red;
+}
+
+#rainy {
+  color: blue;
+}
+
+#cloudy {
+  color: gray;
+}
+
+.plant-body {
+  position: relative;
+}
+
+.plant {
+  background-color: transparent;
+  height: 2rem;
+  width: 1rem;
+}
+
+.plant.grown {
+  background-color: green;
+}
+
+.plant.grown::after {
+  background-color: green;
+  width: .3rem;
+  height: 2rem;
+  content: "";
+  display: block;
+  position: absolute;
+}
+
+.plant.grown:nth-child(even)::after {
+  transform: rotate(45deg);
+  right: 0;
+}
+
+.plant.grown:nth-child(odd)::after {
+  transform: rotate(-45deg);
+  left: 0;
+}
+
+
+
+.soil {
+  background-color: brown;
+  height: .5rem;
+  width: 10rem;
+}
+
+.soil.moist {
+  background-color: lightblue;
 }
