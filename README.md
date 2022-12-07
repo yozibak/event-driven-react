@@ -20,7 +20,11 @@ The app is "Plant Simulator". The weather changes every second and plant grows o
 
 ## The Architecture
 
-There are 3 layers in this architecture.
+<img width="1142" alt="eda" src="https://user-images.githubusercontent.com/58211188/206078459-00f75f2f-494f-40b8-8e60-36f365aa3818.png">
+
+There are 3 layers in this architecture. 
+
+Each layer has its own responsibility and it shouldn't be handled in other layers.
 
 ### Store
 
