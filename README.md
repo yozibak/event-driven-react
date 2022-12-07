@@ -14,7 +14,7 @@ This architecture pattern is especially suitable for React projects that:
 ## Demo
 
 See working demo on Stackblitz: 
-https://react-ts-7indhb.stackblitz.io
+[[https://react-ts-7indhb.stackblitz.io](https://stackblitz.com/edit/react-ts-7indhb?file=src/App.tsx)](https://stackblitz.com/edit/eda-react?file=src/App.tsx)
 
 The app is "Plant Simulator". The weather changes every second and plant grows or dies (the "event" in this app). 
 
