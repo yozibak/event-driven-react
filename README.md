@@ -1,46 +1,53 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Event Driven React
 
-## Available Scripts
+This repository shows an example workaround to manage the app's events (i.e. domain logics). 
 
-In the project directory, you can run:
+By using this architecture, the app will get more testable and scalable. 
 
-### `yarn start`
+This architecture pattern is especially suitable for React projects that:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- should handle data subscription events (e.g. receiving GraphQL messages)
+- should handle time-based events
+- should scale in the future, but not built on top of Redux
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Demo
 
-### `yarn test`
+See working demo on Stackblitz: 
+https://react-ts-7indhb.stackblitz.io
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The app is "Plant Simulator". The weather changes every second and plant grows or dies (the "event" in this app). 
 
-### `yarn build`
+## The Architecture
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+There are 3 layers in this architecture.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Store
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- hold state and expose
+- provide functions to modify states
+- do NOT access other stores' state
 
-### `yarn eject`
+### Service
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- detect events
+- consume events
+- provide "commands" (not in this repo)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### UI
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- render data querying stores
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Background
 
-## Learn More
+Our project was seeing a "big ball of mud". Hooks and components were using each other dependently, and it was becoming hard to scale the app. 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+I came up with this pattern while learning so-called "event-driven architecture". Since EDA is basically an OOP practice, it might look a little different here. The state management and hooks should be under React component, so all the layers explained are under the top-level `<App />`  component.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+I refactored the entire project architecture so that it can be bearable for future development. It became more unit-testable, and it actually got more tests. The domain rules became more clear to everyone on the team. 
+
+# Caveats
+
+- If this kind of architecture is in need, it might be better to build on top of Redux in the first place. 
+- This pattern requires developers to understand the bits of OOP practices, which you can't expect from most React devs. You need to "pitch" to your team if you were to use this pattern in your project. 
+
