@@ -15,14 +15,14 @@ describe("consume events", () => {
     jest.resetAllMocks()
   })
 
-  it("should consume moisture when plant grow", () => {
+  it("should consume moisture when the plant grows", () => {
     const mockEvent:AppEvent = {...EventBase}
     renderHook(() => useConsumer(mockEvent, MockPlantStore, MockSoilStore))
     expect(MockSoilStore.dry).toHaveBeenCalled()
     expect(MockPlantStore.grow).toHaveBeenCalled()
   })
   
-  it("should execute the manipulations according to each event", () => {
+  it("should execute the right manipulations according to each event", () => {
     const waterEvent:AppEvent = {...EventBase, plantEvent: PlantEvent.Water}
     renderHook(() => useConsumer(waterEvent, MockPlantStore, MockSoilStore))
     expect(MockSoilStore.water).toHaveBeenCalled()
@@ -33,7 +33,7 @@ describe("consume events", () => {
     expect(MockSoilStore.dry).toHaveBeenCalled()
   })
 
-  it("should not consume event again on the same event object", () => {
+  it("should not consume the event again on the same event object", () => {
     const dryEvent:AppEvent = {...EventBase, plantEvent: PlantEvent.Dry}
     const { rerender } = renderHook(
       ({dryEvent}) => useConsumer(dryEvent, MockPlantStore, MockSoilStore),

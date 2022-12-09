@@ -25,7 +25,7 @@ function App() {
   const soil = useSoil()
 
   // detect events
-  const event = useEvent(clock.time, soil.isMoisted, weather)
+  const event = useEvent(clock.time, soil.isMoist, weather)
 
   // handle events
   useConsumer(event, plant, soil)

@@ -10,7 +10,7 @@ export const MockPlantStore: PlantStore = {
 
 export const MockSoilStore: SoilStore = {
   moisture: 0,
-  isMoisted: false,
+  isMoist: false,
   dry: jest.fn(),
   water: jest.fn()
 }

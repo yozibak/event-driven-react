@@ -18,7 +18,7 @@ export interface AppEvent {
 
 export const useEvent = (
   time: ClockStore['time'],
-  isMoisted: SoilStore['isMoisted'],
+  isMoist: SoilStore['isMoist'],
   weather: WeatherStore
 ) => {
 
@@ -32,22 +32,22 @@ export const useEvent = (
 
   useEffect(() => {
     if (time === event.timestamp) return 
-    const evt = eventEmit(isMoisted, currentWeather)
+    const evt = eventEmit(isMoist, currentWeather)
     setEvent(
       {timestamp: time, plantEvent: evt}
     )
-  }, [isMoisted, currentWeather, event.timestamp, time])
+  }, [isMoist, currentWeather, event.timestamp, time])
 
   return event
 }
 
 export const eventEmit = (
-  isMoisted: SoilStore['isMoisted'],
+  isMoist: SoilStore['isMoist'],
   currentWeather: WeatherStore['currentWeather']
 ):PlantEvent => {
   switch (currentWeather) {
     case Weather.sunny:
-      return isMoisted 
+      return isMoist 
         ? PlantEvent.Grow
         : PlantEvent.Die
     case Weather.rainy:
